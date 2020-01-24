@@ -30,7 +30,7 @@ class ConfigService {
     return {
       type: 'postgres',
 
-      host: 'localhost' || this.getValue('DB_HOST_' + this.mod),
+      host: this.getValue('DB_HOST_' + this.mod),
       port: parseInt(this.getValue('DB_PORT_' + this.mod), 0),
       username: this.getValue('DB_USERNAME_' + this.mod),
       password: this.getValue('DB_PASSWORD_' + this.mod),
@@ -43,7 +43,7 @@ class ConfigService {
 
       migrationsTableName: 'migration',
 
-      migrations: ['src/migration/*.ts'],
+      migrations: ['src/migration/*.js'],
 
       cli: {
         migrationsDir: 'src/migration',
