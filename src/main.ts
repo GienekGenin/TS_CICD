@@ -7,7 +7,7 @@ import { AppModule } from './app.module';
 import * as bodyParser from 'body-parser';
 import * as helmet from 'helmet';
 import * as logger from 'morgan';
-import { config } from './config';
+import { configService } from './config/config.service';
 import * as cors from 'cors';
 
 listenToKill();
@@ -36,9 +36,11 @@ const bootstrap = async () => {
     const document = SwaggerModule.createDocument(app, options);
     SwaggerModule.setup('api', app, document);
 
-    await app.listen(config.serverPort);
+    const port = configService.getPort();
+
+    await app.listen(port);
     // tslint:disable-next-line:no-console
-    console.log(`Server started at ${config.serverPort}`);
+    console.log(`Server started at ${port}`);
   } catch (e) {
     // tslint:disable-next-line:no-console
     console.error('Start up express error: ', e);
