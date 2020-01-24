@@ -9,9 +9,9 @@ import * as helmet from 'helmet';
 import * as logger from 'morgan';
 import { configService } from './config/config.service';
 import * as cors from 'cors';
-
+import { createTypeOrmCOnfig } from './config/typeorm.config-export.service';
 listenToKill();
-
+createTypeOrmCOnfig();
 const bootstrap = async () => {
   try {
     const app = await NestFactory.create(AppModule);
