@@ -5,6 +5,7 @@ import { configService } from './config/config.service';
 import { createTypeOrmCOnfig } from './config/typeorm.config-export.service';
 import { Transport } from '@nestjs/microservices';
 import { applyMiddleware } from './common/services/app.config-service';
+import { seed } from './seeds';
 
 listenToKill();
 createTypeOrmCOnfig();
@@ -20,6 +21,7 @@ const bootstrap = async () => {
     });
 
     applyMiddleware(app);
+    await seed();
 
     const port = configService.getPort();
 
