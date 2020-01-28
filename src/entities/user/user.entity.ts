@@ -23,6 +23,6 @@ export class User {
     type => Role,
     role => role.id,
   )
-  @JoinColumn()
-  role: number;
+  @JoinColumn({ name: 'roleId' })
+  roleId: number;
 }
