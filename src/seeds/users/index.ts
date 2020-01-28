@@ -1,20 +1,26 @@
 import { getRepository } from 'typeorm';
-import { Users } from '../../entities/users/users.entity';
+import { User } from '../../entities/user/user.entity';
 
 export const seedUsers = async () => {
   try {
-    const users = [
-      { id: 1, name: 'Gena', email: 'gena@gmail.com', roleId: 1 },
-      { id: 2, name: 'Vanya', email: 'vanya@gmail.com', roleId: 1 },
-      { id: 3, name: 'Senia', email: 'senia@gmail.com', roleId: 1 },
-      { id: 4, name: 'Igor', email: 'igor@gmail.com', roleId: 1 },
-      { id: 5, name: 'Stefan', email: 'stefan@gmail.com', roleId: 1 },
-      { id: 6, name: 'Stefen', email: 'stefen@gmail.com', roleId: 1 },
-      { id: 7, name: 'Yanus', email: 'yanus@gmail.com', roleId: 1 },
-      { id: 8, name: 'Timo', email: 'timo@gmail.com', roleId: 1 },
-      { id: 9, name: 'Darek', email: 'darek@gmail.com', roleId: 1 },
-    ];
-    const usersRepo = getRepository(Users);
+    const users: User[] = [
+      { name: 'Gena', email: 'gena@gmail.com', role: 1 },
+      { name: 'Vanya', email: 'vanya@gmail.com', role: 1 },
+      { name: 'Senia', email: 'senia@gmail.com', role: 1 },
+      { name: 'Igor', email: 'igor@gmail.com', role: 1 },
+      { name: 'Stefan', email: 'stefan@gmail.com', role: 1 },
+      { name: 'Stefen', email: 'stefen@gmail.com', role: 1 },
+      { name: 'Yanus', email: 'yanus@gmail.com', role: 1 },
+      { name: 'Timo', email: 'timo@gmail.com', role: 1 },
+      { name: 'Darek', email: 'darek@gmail.com', role: 1 },
+    ].map((el: User) => {
+      const user = new User();
+      user.name = el.name;
+      user.email = el.email;
+      user.role = el.role;
+      return user;
+    });
+    const usersRepo = getRepository(User);
     await usersRepo.insert(users).then(d => console.log('Users inserted'));
   } catch (e) {
     // tslint:disable-next-line:no-console

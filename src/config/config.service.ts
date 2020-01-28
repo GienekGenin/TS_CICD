@@ -1,5 +1,4 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { entities } from '../entities/entity.export-service';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
@@ -30,20 +29,20 @@ class ConfigService {
     return {
       type: 'postgres',
 
-      host: this.getValue('DB_HOST_' + this.mod),
+      host: 'localhost' || this.getValue('DB_HOST_' + this.mod),
       port: parseInt(this.getValue('DB_PORT_' + this.mod), 0),
       username: this.getValue('DB_USERNAME_' + this.mod),
       password: this.getValue('DB_PASSWORD_' + this.mod),
       database: this.getValue('DB_DATABASE_' + this.mod),
 
-      entities,
+      entities: ['dist/**/*.entity{.ts,.js}'],
 
       dropSchema: this.mod === 'development',
       synchronize: this.mod === 'development',
 
       migrationsTableName: 'migration',
 
-      migrations: ['src/migration/*.js'],
+      migrations: ['dist/migration/*.js'],
 
       cli: {
         migrationsDir: 'src/migration',

@@ -4,13 +4,14 @@ import {
   PrimaryGeneratedColumn,
   OneToOne,
   JoinColumn,
+  ManyToOne,
 } from 'typeorm';
-import { Roles } from '../roles/roles.entity';
+import { Role } from '../role/role.entity';
 
-@Entity({ schema: 'public', name: 'users' })
-export class Users {
+@Entity({ schema: 'public', name: 'user' })
+export class User {
   @PrimaryGeneratedColumn({ type: 'integer' })
-  id: number;
+  id?: number;
 
   @Column({ length: 255 })
   name: string;
@@ -18,6 +19,10 @@ export class Users {
   @Column({ length: 255 })
   email: string;
 
-  @Column({ type: 'integer' })
-  roleId: number;
+  @ManyToOne(
+    type => Role,
+    role => role.id,
+  )
+  @JoinColumn()
+  role: number;
 }

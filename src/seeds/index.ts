@@ -1,5 +1,5 @@
-import { seedUsers } from './users/index';
 import { seedRoles } from './roles/index';
+import { seedUsers } from './users/index';
 
 export const seed = async () => {
   try {

@@ -1,9 +1,10 @@
+import 'reflect-metadata';
 import { listenToKill } from './common/services/instance.kill.service';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { configService } from './config/config.service';
 import { createTypeOrmCOnfig } from './config/typeorm.config-export.service';
-import { Transport } from '@nestjs/microservices';
+// import { Transport } from '@nestjs/microservices';
 import { applyMiddleware } from './common/services/app.config-service';
 import { seed } from './seeds';
 
@@ -13,12 +14,12 @@ const bootstrap = async () => {
   try {
     const app = await NestFactory.create(AppModule);
 
-    app.connectMicroservice({
-      transport: Transport.REDIS,
-      options: {
-        url: 'redis://localhost:6379',
-      },
-    });
+    // app.connectMicroservice({
+    //   transport: Transport.REDIS,
+    //   options: {
+    //     url: 'redis://localhost:6379',
+    //   },
+    // });
 
     applyMiddleware(app);
     await seed();

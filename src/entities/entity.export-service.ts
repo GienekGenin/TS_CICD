@@ -1,4 +1,4 @@
-import { Users } from './users/users.entity';
-import { Roles } from './roles/roles.entity';
+import { User } from './user/user.entity';
+import { Role } from './role/role.entity';
 
-export const entities = [Users, Roles];
+export const entities = [User, Role];
