@@ -1,7 +1,5 @@
 import { INestApplication } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { AllExceptionsFilter } from '../middleware/all-exceptions.filter';
-import { TransformInterceptor } from '../middleware/transform.interceptor';
 import * as bodyParser from 'body-parser';
 import * as helmet from 'helmet';
 import * as logger from 'morgan';
@@ -25,7 +23,4 @@ export const applyMiddleware = (app: INestApplication) => {
     bodyParser.urlencoded({ extended: true }),
     bodyParser.text(),
   );
-
-  app.useGlobalFilters(new AllExceptionsFilter());
-  app.useGlobalInterceptors(new TransformInterceptor());
 };
