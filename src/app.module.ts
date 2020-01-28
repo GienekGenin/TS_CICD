@@ -7,7 +7,8 @@ import { configService } from './config/config.service';
 import { RolesModule } from './entities/role/role.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
-import { APP_FILTER } from '@nestjs/core';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
+import { LoggingInterceptor } from './common/interceptors/loggin.interceptor';
 
 @Module({
   imports: [
@@ -29,6 +30,10 @@ import { APP_FILTER } from '@nestjs/core';
     {
       provide: APP_FILTER,
       useClass: HttpExceptionFilter,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LoggingInterceptor,
     },
   ],
 })
